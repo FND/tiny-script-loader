@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Tiny Script Loader</title>
+</head>
+
+<body>
+	<h1>Tiny Script Loader</h1>
+	<p>intended for loading polyfills up front</p>
+
+	<script>
+// NB: inlining `loader.js` to avoid a separate HTTP request
+(function() {
+
+var uris = [];
+if(!Object.assign) { // heuristic
+	uris.push("polyfills/stdlib.js");
+}
+if(!window.Promise) {
+	uris.push("polyfills/bluebird.core.js");
+}
+if(!window.fetch) {
+	uris.push("polyfills/fetch.js");
+}
+uris.push("bundle.js");
+loadScripts(uris);
+
+// NB: there doesn't seem to be a reliable way to prefetch scripts while
+//     executing them in order - cf. http://stackoverflow.com/a/17979532
+function loadScripts(uris) {
+	uris = uris.slice();
+	var uri = uris.shift();
+	loadScript(uri, function() {
+		uris.length && loadScripts(uris);
+	}, function() {
+		throw new Error("failed to load script " + uri);
+	});
+};
+
+// NB: not supported by IE 8 and below (see RequireJS source for details)
+function loadScript(uri, onLoad, onError) {
+	var node = document.createElement("script");
+
+	node.addEventListener("load", onLoad);
+	if(onError) {
+		node.addEventListener("error", onError);
+	}
+
+	node.src = uri;
+	document.head.appendChild(node);
+}
+
+}());
+	</script>
+</body>
+
+</html>
