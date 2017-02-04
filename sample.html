@@ -11,7 +11,6 @@
 	<p>intended for loading polyfills up front</p>
 
 	<script>
-// NB: inlining `loader.js` to avoid a separate HTTP request
 (function() {
 
 var uris = [];
@@ -27,30 +26,8 @@ if(!window.fetch) {
 uris.push("bundle.js");
 loadScripts(uris);
 
-// NB: there doesn't seem to be a reliable way to prefetch scripts while
-//     executing them in order - cf. http://stackoverflow.com/a/17979532
-function loadScripts(uris) {
-	uris = uris.slice();
-	var uri = uris.shift();
-	loadScript(uri, function() {
-		uris.length && loadScripts(uris);
-	}, function() {
-		throw new Error("failed to load script " + uri);
-	});
-};
-
-// NB: not supported by IE 8 and below (see RequireJS source for details)
-function loadScript(uri, onLoad, onError) {
-	var node = document.createElement("script");
-
-	node.addEventListener("load", onLoad);
-	if(onError) {
-		node.addEventListener("error", onError);
-	}
-
-	node.src = uri;
-	document.head.appendChild(node);
-}
+// inlining `loader.js` to avoid a separate HTTP request
+function loadScripts(t){t=t.slice();var e=t.shift();loadScript(e,function(){t.length&&loadScripts(t)},function(){throw new Error("failed to load script "+e)})}function loadScript(t,e,r){var n=document.createElement("script");n.addEventListener("load",e),r&&n.addEventListener("error",r),n.src=t,document.head.appendChild(n)}
 
 }());
 	</script>
