@@ -1,7 +1,9 @@
 [tiny script loader](#file-loader-js), intended for loading polyfills up front
 
 ```javascript
-loadScripts(["foo.js", "bar.js", "baz.js"]);
+loadScripts(["foo.js", "bar.js", "baz.js"], function() {
+	// all aforementioned scripts have been loaded
+});
 ```
 
 scripts are loaded and executed sequentially

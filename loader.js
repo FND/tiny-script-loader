@@ -2,11 +2,15 @@ var loadScripts = (function() {
 
 // NB: there doesn't seem to be a reliable way to prefetch scripts while
 //     executing them in order - cf. http://stackoverflow.com/a/17979532
-return function loadScripts(uris) {
+return function loadScripts(uris, callback) {
 	uris = uris.slice();
 	var uri = uris.shift();
 	loadScript(uri, function() {
-		uris.length && loadScripts(uris);
+		if(uris.length) {
+			loadScripts(uris, callback);
+		} else if(callback) {
+			callback();
+		}
 	}, function() {
 		throw new Error("failed to load script " + uri);
 	});

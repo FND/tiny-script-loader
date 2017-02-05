@@ -10,27 +10,7 @@
 	<h1>Tiny Script Loader</h1>
 	<p>intended for loading polyfills up front</p>
 
-	<script>
-(function() {
-
-var uris = [];
-if(!Object.assign) { // heuristic
-	uris.push("polyfills/stdlib.js");
-}
-if(!window.Promise) {
-	uris.push("polyfills/bluebird.core.js");
-}
-if(!window.fetch) {
-	uris.push("polyfills/fetch.js");
-}
-uris.push("bundle.js");
-loadScripts(uris);
-
-// inlining `loader.js` to avoid a separate HTTP request
-function loadScripts(t){t=t.slice();var e=t.shift();loadScript(e,function(){t.length&&loadScripts(t)},function(){throw new Error("failed to load script "+e)})}function loadScript(t,e,r){var n=document.createElement("script");n.addEventListener("load",e),r&&n.addEventListener("error",r),n.src=t,document.head.appendChild(n)}
-
-}());
-	</script>
+	<script src="sample.js"></script>
 </body>
 
 </html>
