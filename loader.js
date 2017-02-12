@@ -3,6 +3,13 @@ var loadScripts = (function() {
 // NB: there doesn't seem to be a reliable way to prefetch scripts while
 //     executing them in order - cf. http://stackoverflow.com/a/17979532
 return function loadScripts(uris, callback) {
+	if(!uris.length) { // for API convenience
+		if(callback) {
+			callback();
+		}
+		return;
+	}
+
 	uris = uris.slice();
 	var uri = uris.shift();
 	loadScript(uri, function() {
