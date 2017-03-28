@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "minify": "sed -e '1d; $d;' -e 's/^return function/function/' loader.js | uglifyjs -c -m > loader.min.js"
+    "minify": "uglifyjs -c -m < loader.js > loader.min.js"
   },
   "devDependencies": {
-    "uglify-js": "^2.7.5"
+    "uglify-js": "^2.8.16"
   }
 }
