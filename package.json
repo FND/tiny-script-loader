@@ -1,8 +1,11 @@
 {
   "scripts": {
+    "test": "eslint --cache --ignore-path .gitignore *.js && echo ✓",
     "standalone": "sed -e 's/^export default //' loader.js | uglifyjs -c -m > loader.min.js"
   },
   "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-fnd": "^1.1.0",
     "uglify-js": "^2.8.22"
   }
 }

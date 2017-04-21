@@ -1,3 +1,4 @@
+/* eslint-disable indent, padded-blocks */
 (function() {
 
 // load polyfills as necessary
@@ -19,10 +20,13 @@ if(polyfills.length) {
 }
 
 function init() {
+	// eslint-disable-next-line
 	console.log("INITIALIZING APPLICATION", Object.assign, Promise, fetch);
 }
 
 // inlining `loader.js` to avoid a separate HTTP request
+/* eslint-disable */
 function loadScripts(t,e){t=t.slice();var r=t.shift();loadScript(r,function(){t.length?loadScripts(t,e):e&&e()},function(){throw new Error("failed to load script "+r)})}function loadScript(t,e,r){var n=document.createElement("script");n.addEventListener("load",e),r&&n.addEventListener("error",r),n.src=t,document.head.appendChild(n)}
+/* eslint-enable */
 
 }());

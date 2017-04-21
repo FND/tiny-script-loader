@@ -1,0 +1,3 @@
+extends: fnd
+rules:
+    no-var: off
