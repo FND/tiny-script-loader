@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "minify": "uglifyjs -c -m < loader.js > loader.min.js"
+    "standalone": "sed -e 's/^export default //' loader.js | uglifyjs -c -m > loader.min.js"
   },
   "devDependencies": {
-    "uglify-js": "^2.8.16"
+    "uglify-js": "^2.8.22"
   }
 }

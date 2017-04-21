@@ -2,7 +2,7 @@
 // * not supported by IE 8 and below (see RequireJS source for details)
 // * there doesn't seem to be a reliable way to prefetch scripts while
 //   executing them in order - cf. http://stackoverflow.com/a/17979532
-function loadScripts(uris, callback) {
+export default function loadScripts(uris, callback) {
 	if(!uris.length) { // for API convenience
 		if(callback) {
 			callback();
