@@ -36,6 +36,12 @@ loadScripts.loadScript = function(uri, onLoad, onError) {
 		node[ael]("error", onError);
 	}
 
-	node.src = uri;
+	if(uri.substr) {
+		node.src = uri;
+	} else { // arbitrary attributes (e.g. for Subresource Integrity)
+		Object.keys(uri).forEach(function(attr) {
+			node.setAttribute(attr, uri[attr]);
+		});
+	}
 	doc.head.appendChild(node);
 };
