@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "eslint --cache --ignore-path .gitignore *.js && echo ✓",
+    "test": "eslint --cache --ignore-path .gitignore *.js samples && echo ✓",
     "standalone": "sed -e 's/^export default //' loader.js | uglifyjs -c -m > loader.min.js"
   },
   "devDependencies": {

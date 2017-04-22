@@ -24,9 +24,9 @@ function init() {
 	console.log("INITIALIZING APPLICATION", Object.assign, Promise, fetch);
 }
 
-// inlining `loader.js` to avoid a separate HTTP request
+// inlining `loader.min.js` to avoid a separate HTTP request
 /* eslint-disable */
-function loadScripts(t,e){t=t.slice();var r=t.shift();loadScript(r,function(){t.length?loadScripts(t,e):e&&e()},function(){throw new Error("failed to load script "+r)})}function loadScript(t,e,r){var n=document.createElement("script");n.addEventListener("load",e),r&&n.addEventListener("error",r),n.src=t,document.head.appendChild(n)}
+function loadScripts(t,r){if(!t.length)return void(r&&r());t=t.slice();var i=t.shift(),e=loadScripts;e.loadScript(i,function(){t.length?e(t,r):r&&r()},function(){throw new Error("failed to load script "+i)})}loadScripts.loadScript=function(t,r,i){var e=document,n="addEventListener",o=e.createElement("script");o[n]("load",r),i&&o[n]("error",i),o.src=t,e.head.appendChild(o)};
 /* eslint-enable */
 
 }());
