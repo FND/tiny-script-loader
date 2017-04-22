@@ -23,11 +23,10 @@ cp -r loader.min.js tmp_release
 echo "about to publish v${version}"
 read -n1 -p "enter 'y' to continue" confirmation
 if [ "$confirmation" = "y" ]; then
+	cd tmp_release
 	npm publish
 	cd ..
 	git tag "v${version}"
 	git push --tags origin master
-else
-	cd ..
 fi
 rm -r tmp_release
