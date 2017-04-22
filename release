@@ -18,7 +18,8 @@ git ls-tree --name-only HEAD | while read filename; do
 done
 # include stand-alone (minified) version
 npm run standalone
-cp -r loader.min.js tmp_release
+echo "// tiny-loader v$version <https://github.com/FND/tiny-script-loader> (Apache License 2.0)" > tmp_release/loader.min.js
+cat loader.min.js >> tmp_release/loader.min.js
 
 echo "about to publish v${version}"
 read -n1 -p "enter 'y' to continue" confirmation
