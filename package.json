@@ -1,26 +1,26 @@
 {
-  "name": "tiny-loader",
-  "version": "1.0.2",
-  "description": "minimal JavaScript loader, intended for loading polyfills up front",
-  "author": "FND",
-  "license": " Apache-2.0",
-  "homepage": "https://github.com/FND/tiny-script-loader",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/FND/tiny-script-loader.git"
-  },
-  "bugs": {
-    "url": "https://github.com/FND/tiny-script-loader/issues"
-  },
-  "main": "loader.min.js",
-  "module": "loader.js",
-  "scripts": {
-    "test": "eslint --cache --ignore-path .gitignore *.js samples && echo ✓",
-    "standalone": "sed -e 's/^export default //' loader.js | uglifyjs -c -m > loader.min.js"
-  },
-  "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-fnd": "^1.1.0",
-    "uglify-js": "^2.8.22"
-  }
+	"name": "tiny-loader",
+	"version": "1.0.2",
+	"description": "minimal JavaScript loader, intended for loading polyfills up front",
+	"author": "FND",
+	"license": " Apache-2.0",
+	"homepage": "https://github.com/FND/tiny-script-loader",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/FND/tiny-script-loader.git"
+	},
+	"bugs": {
+		"url": "https://github.com/FND/tiny-script-loader/issues"
+	},
+	"main": "loader.min.js",
+	"module": "loader.js",
+	"scripts": {
+		"test": "eslint --cache --ignore-path .gitignore *.js samples && echo ✓",
+		"standalone": "sed -e 's/^export default //' loader.js | uglifyjs -c -m > loader.min.js"
+	},
+	"devDependencies": {
+		"eslint": "^3.19.0",
+		"eslint-config-fnd": "^1.1.0",
+		"uglify-js": "^2.8.22"
+	}
 }
