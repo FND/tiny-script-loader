@@ -1,33 +1,16 @@
 #!/usr/bin/env bash
 
-set -e
-set -x
+. ./node_modules/release-util-fnd/lib.sh
 
-version=`node -p 'require("./package.json").version'`
-
-# ensure we have no unstaged changes -- TODO: report error
-git diff --exit-code --quiet
-git diff --cached --exit-code --quiet
-
+pre_release_checks
 npm test
 
-# selectively determine package contents
-mkdir tmp_release
-git ls-tree --name-only HEAD | while read filename; do
-	cp -r "$filename" tmp_release
-done
+target_dir=`create_package`
 # include stand-alone (minified) version
 npm run standalone
-echo "// tiny-loader v$version <https://github.com/FND/tiny-script-loader> (Apache License 2.0)" > tmp_release/loader.min.js
-cat loader.min.js >> tmp_release/loader.min.js
+target="$target_dir/loader.min.js"
+intro="// tiny-loader v$version <https://github.com/FND/tiny-script-loader> (Apache License 2.0)"
+echo "$intro" > "$target"
+cat loader.min.js >> "$target"
 
-echo "about to publish v${version}"
-read -n1 -p "enter 'y' to continue" confirmation
-if [ "$confirmation" = "y" ]; then
-	cd tmp_release
-	npm publish
-	cd ..
-	git tag "v${version}"
-	git push --tags origin master
-fi
-rm -r tmp_release
+publish_package
