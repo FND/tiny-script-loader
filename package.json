@@ -1,6 +1,6 @@
 {
 	"name": "tiny-loader",
-	"version": "1.0.2",
+	"version": "1.1.0",
 	"description": "minimal JavaScript loader, intended for loading polyfills up front",
 	"author": "FND",
 	"license": "Apache-2.0",
@@ -19,9 +19,9 @@
 		"standalone": "sed -e 's/^export default //' loader.js | uglifyjs -c -m > loader.min.js"
 	},
 	"devDependencies": {
-		"eslint": "^3.19.0",
-		"eslint-config-fnd": "^1.1.0",
-		"release-util-fnd": "^1.0.0",
-		"uglify-js": "^2.8.22"
+		"eslint": "^5.14.1",
+		"eslint-config-fnd": "^1.6.0",
+		"release-util-fnd": "^1.1.1",
+		"uglify-js": "^3.4.9"
 	}
 }

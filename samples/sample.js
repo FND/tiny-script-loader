@@ -26,7 +26,7 @@ function init() {
 
 // inlining `loader.min.js` to avoid a separate HTTP request
 /* eslint-disable */
-function loadScripts(t,r){if(!t.length)return void(r&&r());t=t.slice();var i=t.shift(),e=loadScripts;e.loadScript(i,function(){t.length?e(t,r):r&&r()},function(){throw new Error("failed to load script "+i)})}loadScripts.loadScript=function(t,r,i){var e=document,n="addEventListener",o=e.createElement("script");o[n]("load",r),i&&o[n]("error",i),o.src=t,e.head.appendChild(o)};
-/* eslint-enable */
+function loadScripts(t,e){if(t.length){var r=(t=t.slice()).shift(),i=loadScripts;i.loadScript(r,function(){t.length?i(t,e):e&&e()},function(){throw new Error("failed to load script "+r)})}else e&&e()}loadScripts.loadScript=function(e,t,r){var i=document,c="addEventListener",n=i.createElement("script");n[c]("load",t),r&&n[c]("error",r),e.substr?n.src=e:Object.keys(e).forEach(function(t){n.setAttribute(t,e[t])}),i.head.appendChild(n)};
 
 }());
+/* eslint-enable */

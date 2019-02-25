@@ -1,5 +1,5 @@
 tiny, dependency-free JavaScript loader — intended primarily for loading
-polyfills up front
+polyfills or common libraries up front
 
 ```javascript
 loadScripts(["foo.js", "bar.js", "baz.js"], function() {

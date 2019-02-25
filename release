@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
+set -eu
+
 . ./node_modules/release-util-fnd/lib.sh
+
+version=`node -p 'require("./package.json").version'`
 
 pre_release_checks
 npm test
